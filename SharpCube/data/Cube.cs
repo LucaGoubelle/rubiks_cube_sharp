@@ -1,7 +1,6 @@
-namespace SharpCube
-{
-    public class Cube
-    {
+namespace SharpCube.data;
+
+public class Cube{
         public List<List<string>> Back;
         public List<List<string>> Up;
         public List<List<string>> Front;
@@ -25,5 +24,5 @@ namespace SharpCube
             this.Right = right;
             this.Down = down;
         }
-    }
+
 }

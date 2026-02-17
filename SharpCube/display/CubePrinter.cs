@@ -1,4 +1,6 @@
-namespace SharpCube;
+namespace SharpCube.display;
+
+using SharpCube.data;
 
 public class CubePrinter
 {

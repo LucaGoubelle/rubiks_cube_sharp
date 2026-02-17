@@ -1,4 +1,4 @@
-﻿namespace SharpCube;
+﻿namespace SharpCube.data;
 
 public class CubeBuilder
 {
