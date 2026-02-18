@@ -1,13 +1,13 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using SharpCube.data;
 using SharpCube.display;
+using SharpCube.moves;
 
 CubeBuilder builder = new CubeBuilder();
 CubePrinter printer = new CubePrinter();
-DSVSaveHandler dsvSave = new DSVSaveHandler();
+CubeMover mover = new CubeMover();
 
 Cube cube = builder.Build(3);
 printer.PrintCube(cube);
-dsvSave.Dump(cube, "../res/test.dsv");
-cube = dsvSave.Load("../res/test.dsv");
+cube = mover.SimpleMove(cube, "y'");
 printer.PrintCube(cube);

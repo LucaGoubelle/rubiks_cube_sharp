@@ -1,0 +1,39 @@
+namespace SharpCube.moves;
+
+using SharpCube.data;
+
+public class AxisMoves
+{
+    public Cube MoveY(Cube cube)
+    {
+        cube.Up = RotateHelpers.Rotate(cube.Up);
+        cube.Down = RotateHelpers.RotateAsync(cube.Down);
+
+        List<List<string>> newFront = RotateHelpers.CopyFace(cube.Right);
+        List<List<string>> newBack = RotateHelpers.CopyFace(cube.Left);
+        List<List<string>> newRight = RotateHelpers.CopyFace(cube.Back);
+        List<List<string>> newLeft = RotateHelpers.CopyFace(cube.Front);
+
+        cube.Front = RotateHelpers.Transfert(cube.Front, newFront);
+        cube.Right = RotateHelpers.Transfert(cube.Right, newRight);
+        cube.Back = RotateHelpers.Transfert(cube.Back, newBack);
+        cube.Left = RotateHelpers.Transfert(cube.Left, newLeft);
+
+        return cube;
+    }
+
+    public Cube MoveYPrime(Cube cube)
+    {
+        for(int i=0;i<3;i++)
+            cube = this.MoveY(cube);
+        return cube;
+    }
+
+    public Cube MoveY2(Cube cube)
+    {
+        for(int i=0;i<2;i++)
+            cube = this.MoveY(cube);
+        return cube;
+    }
+
+}

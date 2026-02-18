@@ -5,10 +5,12 @@ using SharpCube.data;
 public class CubeMover
 {
     private STDMoves stdMoves;
+    private AxisMoves axisMoves;
 
     public CubeMover()
     {
         this.stdMoves = new STDMoves();
+        this.axisMoves = new AxisMoves();
     }
 
     public Cube SimpleMove(Cube cube, string mv)
@@ -16,14 +18,27 @@ public class CubeMover
         switch (mv)
         {
             case "U":
-                return this.stdMoves.MoveU(cube);
+                cube = this.stdMoves.MoveU(cube);
+                break;
             case "U'":
-                return this.stdMoves.MoveUPrime(cube);
+                cube = this.stdMoves.MoveUPrime(cube);
+                break;
             case "U2":
-                return this.stdMoves.MoveU2(cube);
+                cube = this.stdMoves.MoveU2(cube);
+                break;
+            case "y":
+                cube = this.axisMoves.MoveY(cube);
+                break;
+            case "y'":
+                cube = this.axisMoves.MoveYPrime(cube);
+                break;
+            case "y2":
+                cube = this.axisMoves.MoveY2(cube);
+                break;
             default:
-                return cube;
-        }       
+                break;
+        }
+        return cube;
     }
 
     public Cube MultiMoves(Cube cube, string mvs)
