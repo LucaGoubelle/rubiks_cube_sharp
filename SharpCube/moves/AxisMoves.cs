@@ -68,4 +68,36 @@ public class AxisMoves
         return cube;
     }
 
+    public Cube MoveZ(Cube cube)
+    {
+        cube.Front = RotateHelpers.Rotate(cube.Front);
+        cube.Back = RotateHelpers.RotateAsync(cube.Back);
+
+        List<List<string>> newUp = RotateHelpers.Rotate(RotateHelpers.CopyFace(cube.Left));
+        List<List<string>> newRight = RotateHelpers.Rotate(RotateHelpers.CopyFace(cube.Up));
+        List<List<string>> newLeft = RotateHelpers.Rotate(RotateHelpers.CopyFace(cube.Down));
+        List<List<string>> newDown = RotateHelpers.Rotate(RotateHelpers.CopyFace(cube.Right));
+
+        cube.Up = RotateHelpers.Transfert(cube.Up, newUp);
+        cube.Right = RotateHelpers.Transfert(cube.Right, newRight);
+        cube.Left = RotateHelpers.Transfert(cube.Left, newLeft);
+        cube.Down = RotateHelpers.Transfert(cube.Down, newDown);
+
+        return cube;
+    }
+
+    public Cube MoveZPrime(Cube cube)
+    {
+        for(int i=0;i<3;i++)
+            cube = this.MoveZ(cube);
+        return cube;
+    }
+
+    public Cube MoveZ2(Cube cube)
+    {
+        for(int i=0;i<2;i++)
+            cube = this.MoveZ(cube);
+        return cube;
+    }
+    
 }

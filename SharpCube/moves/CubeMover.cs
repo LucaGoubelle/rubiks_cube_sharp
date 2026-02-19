@@ -44,6 +44,15 @@ public class CubeMover
             case "x2":
                 cube = this.axisMoves.MoveX2(cube);
                 break;
+            case "z":
+                cube = this.axisMoves.MoveZ(cube);
+                break;
+            case "z'":
+                cube = this.axisMoves.MoveZPrime(cube);
+                break;
+            case "z2":
+                cube = this.axisMoves.MoveZ2(cube);
+                break;
             default:
                 break;
         }
