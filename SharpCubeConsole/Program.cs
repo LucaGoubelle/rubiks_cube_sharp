@@ -6,8 +6,11 @@ using SharpCube.moves;
 CubeBuilder builder = new CubeBuilder();
 CubePrinter printer = new CubePrinter();
 CubeMover mover = new CubeMover();
+CubeDumper dumper = new CubeDumper();
 
 Cube cube = builder.Build(3);
 printer.PrintCube(cube);
 cube = mover.SimpleMove(cube, "z2");
 printer.PrintCube(cube);
+
+Console.WriteLine(dumper.Dump(cube));
