@@ -5,9 +5,10 @@ using SharpCube.moves;
 
 CubeBuilder builder = new CubeBuilder();
 CubePrinter printer = new CubePrinter();
-CubeMover mover = new CubeMover();
+// CubeMover mover = new CubeMover();
+CubeScrambler scrambler = new CubeScrambler();
 
 Cube cube = builder.Build(3);
 printer.PrintCube(cube);
-cube = mover.SimpleMove(cube, "F2");
+cube = scrambler.Scramble(cube);
 printer.PrintCube(cube);
