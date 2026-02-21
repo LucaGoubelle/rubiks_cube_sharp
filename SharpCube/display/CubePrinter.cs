@@ -1,6 +1,7 @@
 namespace SharpCube.display;
 
 using SharpCube.data;
+using SharpCube.exceptions;
 
 public class CubePrinter
 {
@@ -19,14 +20,21 @@ public class CubePrinter
 
     public void PrintCube(Cube cube)
     {
-        string content = "";
-        foreach(List<string> row in cube.Up)
-            content += this.genRowUpDown(row);
-        for(int i=0;i<cube.Front.Count;i++)
-            content += this.genRowLFRB(cube.Left[i], cube.Front[i], cube.Right[i], cube.Back[i]);
-        foreach(List<string> row in cube.Down)
-            content += this.genRowUpDown(row);
-        Console.WriteLine(content);  
+        try
+        {
+            string content = "";
+            foreach(List<string> row in cube.Up)
+                content += this.genRowUpDown(row);
+            for(int i=0;i<cube.Front.Count;i++)
+                content += this.genRowLFRB(cube.Left[i], cube.Front[i], cube.Right[i], cube.Back[i]);
+            foreach(List<string> row in cube.Down)
+                content += this.genRowUpDown(row);
+            Console.WriteLine(content);  
+        } catch(Exception exc)
+        {
+            Console.WriteLine(exc.Message);
+            throw new CubeDisplayException("ERR: Something failed in CubePrinter::PrintCube(Cube cube);");
+        }
     }
 
     private string genRowUpDown(List<string> row)
