@@ -1,5 +1,8 @@
 namespace SharpCube.data;
 
+using SharpCube.exceptions;
+
+
 public class DSVSaveHandler
 {
     private string DumpFace(List<List<string>> face)
@@ -20,16 +23,22 @@ public class DSVSaveHandler
 
     public string Dump(Cube cube, string filepath)
     {
-        //todo: implement this
-        string content = "";
-        content += this.DumpFace(cube.Back);
-        content += this.DumpFace(cube.Up);
-        content += this.DumpFace(cube.Front);
-        content += this.DumpFace(cube.Left);
-        content += this.DumpFace(cube.Right);
-        content += this.DumpFace(cube.Down);
-        File.WriteAllText(filepath, content);
-        return "success !";
+        try
+        {    
+            string content = "";
+            content += this.DumpFace(cube.Back);
+            content += this.DumpFace(cube.Up);
+            content += this.DumpFace(cube.Front);
+            content += this.DumpFace(cube.Left);
+            content += this.DumpFace(cube.Right);
+            content += this.DumpFace(cube.Down);
+            File.WriteAllText(filepath, content);
+            return "success !";
+        } catch(Exception exc)
+        {
+            Console.WriteLine(exc.Message);
+            throw new DSVSaveHandlerException("ERR: Something failed in DSVSaveHandlerException::Dump(Cube cube, string filepath);");
+        }
     }
 
     private List<List<string>> LoadFace(string line)
@@ -46,16 +55,23 @@ public class DSVSaveHandler
 
     public Cube Load(string filepath)
     {
-        string raw = File.ReadAllText(filepath);
-        string[] lines = raw.Split('\n');
-        return new Cube(
-            this.LoadFace(lines[0]),
-            this.LoadFace(lines[1]),
-            this.LoadFace(lines[2]),
-            this.LoadFace(lines[3]),
-            this.LoadFace(lines[4]),
-            this.LoadFace(lines[5])
-        );
+        try
+        {    
+            string raw = File.ReadAllText(filepath);
+            string[] lines = raw.Split('\n');
+            return new Cube(
+                this.LoadFace(lines[0]),
+                this.LoadFace(lines[1]),
+                this.LoadFace(lines[2]),
+                this.LoadFace(lines[3]),
+                this.LoadFace(lines[4]),
+                this.LoadFace(lines[5])
+            );
+        } catch(Exception exc)
+        {
+            Console.WriteLine(exc.Message);
+            throw new DSVSaveHandlerException("ERR: Something failed in DSVSaveHandler::Load(string filepath);");
+        }
     }
 
 }
