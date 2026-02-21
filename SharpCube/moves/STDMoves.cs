@@ -84,4 +84,43 @@ public class STDMoves
         return cube;
     }
 
+    public Cube MoveL(Cube cube)
+    {
+        int size = cube.Left.Count;
+        cube.Left = RotateHelpers.Rotate(cube.Left);
+
+        List<List<string>> newUp = RotateHelpers.GenEmptyFace(size);
+        List<List<string>> newFront = RotateHelpers.GenEmptyFace(size);
+        List<List<string>> newDown = RotateHelpers.GenEmptyFace(size);
+        List<List<string>> newBack = RotateHelpers.GenEmptyFace(size);
+
+        for(int i = 0; i < size; i++)
+        {
+            newFront[i][0] = cube.Up[i][0];
+            newDown[i][0] = cube.Front[i][0];
+            newBack[i][0] = cube.Down[i][0];
+            newUp[i][size-1] = cube.Back[i][size-1];
+        }
+
+        cube.Front = RotateHelpers.Transfert(cube.Front, newFront);
+        cube.Up = RotateHelpers.Transfert(cube.Up, RotateHelpers.RotateTwice(newUp));
+        cube.Down = RotateHelpers.Transfert(cube.Down, newDown);
+        cube.Back = RotateHelpers.Transfert(cube.Back, RotateHelpers.RotateTwice(newBack));
+
+        return cube;
+    }
+
+    public Cube MoveLPrime(Cube cube)
+    {
+        for(int i=0;i<3;i++)
+            cube = this.MoveL(cube);
+        return cube;
+    }
+
+    public Cube MoveL2(Cube cube)
+    {
+        for(int i=0;i<2;i++)
+            cube = this.MoveL(cube);
+        return cube;
+    }
 }

@@ -9,5 +9,5 @@ CubeMover mover = new CubeMover();
 
 Cube cube = builder.Build(3);
 printer.PrintCube(cube);
-cube = mover.SimpleMove(cube, "D2");
+cube = mover.SimpleMove(cube, "L2");
 printer.PrintCube(cube);

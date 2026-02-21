@@ -35,6 +35,15 @@ public class CubeMover
             case "D2":
                 cube = this.stdMoves.MoveD2(cube);
                 break;
+            case "L":
+                cube = this.stdMoves.MoveL(cube);
+                break;
+            case "L'":
+                cube = this.stdMoves.MoveLPrime(cube);
+                break;
+            case "L2":
+                cube = this.stdMoves.MoveL2(cube);
+                break;
             case "y":
                 cube = this.axisMoves.MoveY(cube);
                 break;
